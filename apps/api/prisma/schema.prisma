@@ -1,0 +1,824 @@
+// AUTO-GENERATED from database/schema.sql by prisma/pg-to-prisma.js
+// (equivalent to `prisma db pull`). Do not edit by hand - change the SQL, then regenerate.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["shop"]
+}
+
+model addresses {
+  id            BigInt       @id @default(autoincrement())
+  user_id       BigInt
+  type          address_type @default(home)
+  contact_name  String       @db.VarChar(120)
+  contact_phone String       @db.VarChar(20)
+  line1         String       @db.VarChar(255)
+  line2         String?      @db.VarChar(255)
+  landmark      String?      @db.VarChar(255)
+  city          String       @db.VarChar(100)
+  state         String       @db.VarChar(100)
+  postal_code   String       @db.VarChar(12)
+  country       String       @default("IN") @db.Char(2)
+  latitude      Decimal?     @db.Decimal(9, 6)
+  longitude     Decimal?     @db.Decimal(9, 6)
+  is_default    Boolean      @default(false)
+  created_at    DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at    DateTime     @default(now()) @db.Timestamptz(6)
+  user          users        @relation("addresses_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  vendors       vendors[]    @relation("vendors_pickup_address_id")
+  @@schema("shop")
+}
+
+model admin_audit_log {
+  id          BigInt   @id @default(autoincrement())
+  admin_id    BigInt
+  action      String   @db.VarChar(60)
+  entity_type String   @db.VarChar(40)
+  entity_id   BigInt
+  old_values  Json?
+  new_values  Json?
+  ip_address  String?  @db.Inet
+  created_at  DateTime @default(now()) @db.Timestamptz(6)
+  admin       users    @relation("admin_audit_log_admin_id", fields: [admin_id], references: [id])
+  @@schema("shop")
+}
+
+model admin_profiles {
+  user_id        BigInt   @id
+  designation    String?  @db.VarChar(80)
+  is_super_admin Boolean  @default(false)
+  permissions    Json     @default("[]")
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+  user           users    @relation("admin_profiles_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model brands {
+  id         BigInt     @id @default(autoincrement())
+  name       String     @unique @db.VarChar(100)
+  slug       String     @unique @db.VarChar(120)
+  logo_url   String?
+  is_active  Boolean    @default(true)
+  created_at DateTime   @default(now()) @db.Timestamptz(6)
+  products   products[] @relation("products_brand_id")
+  @@schema("shop")
+}
+
+model cart_items {
+  id         BigInt           @id @default(autoincrement())
+  cart_id    BigInt
+  variant_id BigInt
+  quantity   Int
+  added_at   DateTime         @default(now()) @db.Timestamptz(6)
+  cart       carts            @relation("cart_items_cart_id", fields: [cart_id], references: [id], onDelete: Cascade)
+  variant    product_variants @relation("cart_items_variant_id", fields: [variant_id], references: [id], onDelete: Cascade)
+  @@unique([cart_id, variant_id], map: "cart_items_cart_id_variant_id_key")
+  @@schema("shop")
+}
+
+model carts {
+  id         BigInt       @id @default(autoincrement())
+  user_id    BigInt       @unique
+  created_at DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at DateTime     @default(now()) @db.Timestamptz(6)
+  user       users        @relation("carts_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  cart_items cart_items[] @relation("cart_items_cart_id")
+  @@schema("shop")
+}
+
+model categories {
+  id         BigInt       @id @default(autoincrement())
+  parent_id  BigInt?
+  department department
+  name       String       @db.VarChar(100)
+  slug       String       @unique @db.VarChar(120)
+  image_url  String?
+  sort_order Int          @default(0)
+  is_active  Boolean      @default(true)
+  created_at DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at DateTime     @default(now()) @db.Timestamptz(6)
+  parent     categories?  @relation("categories_parent_id", fields: [parent_id], references: [id], onDelete: Restrict)
+  children   categories[] @relation("categories_parent_id")
+  products   products[]   @relation("products_category_id")
+  @@unique([department, parent_id, name], map: "categories_department_parent_id_name_key")
+  @@schema("shop")
+}
+
+model colors {
+  id               Int                @id @default(autoincrement()) @db.SmallInt
+  name             String             @unique @db.VarChar(50)
+  hex_code         String             @db.Char(7)
+  color_family     String?            @db.VarChar(30)
+  product_images   product_images[]   @relation("product_images_color_id")
+  product_variants product_variants[] @relation("product_variants_color_id")
+  @@schema("shop")
+}
+
+model coupons {
+  id               BigInt        @id @default(autoincrement())
+  code             String        @unique @db.VarChar(30)
+  description      String?
+  discount_type    discount_type
+  discount_value   Decimal       @db.Decimal(10, 2)
+  max_discount     Decimal?      @db.Decimal(10, 2)
+  min_order_amount Decimal       @default(0) @db.Decimal(10, 2)
+  vendor_id        BigInt?
+  usage_limit      Int?
+  per_user_limit   Int           @default(1)
+  used_count       Int           @default(0)
+  valid_from       DateTime      @db.Timestamptz(6)
+  valid_to         DateTime      @db.Timestamptz(6)
+  is_active        Boolean       @default(true)
+  created_by       BigInt?
+  created_at       DateTime      @default(now()) @db.Timestamptz(6)
+  created_by_ref   users?        @relation("coupons_created_by", fields: [created_by], references: [id])
+  vendor           vendors?      @relation("coupons_vendor_id", fields: [vendor_id], references: [id])
+  orders           orders[]      @relation("orders_coupon_id")
+  @@schema("shop")
+}
+
+model delivery_agent_locations {
+  id                BigInt          @id @default(autoincrement())
+  delivery_agent_id BigInt
+  shipment_id       BigInt?
+  latitude          Decimal         @db.Decimal(9, 6)
+  longitude         Decimal         @db.Decimal(9, 6)
+  speed_kmph        Decimal?        @db.Decimal(5, 1)
+  recorded_at       DateTime        @default(now()) @db.Timestamptz(6)
+  delivery_agent    delivery_agents @relation("delivery_agent_locations_delivery_agent_id", fields: [delivery_agent_id], references: [id], onDelete: Cascade)
+  shipment          shipments?      @relation("delivery_agent_locations_shipment_id", fields: [shipment_id], references: [id], onDelete: SetNull)
+  @@schema("shop")
+}
+
+model delivery_agents {
+  id                       BigInt                     @id @default(autoincrement())
+  user_id                  BigInt                     @unique
+  vehicle_type             String?                    @db.VarChar(30)
+  vehicle_number           String?                    @db.VarChar(20)
+  license_number           String?                    @db.VarChar(30)
+  service_pincodes         String[]                   @default([])
+  is_available             Boolean                    @default(false)
+  current_latitude         Decimal?                   @db.Decimal(9, 6)
+  current_longitude        Decimal?                   @db.Decimal(9, 6)
+  location_updated_at      DateTime?                  @db.Timestamptz(6)
+  rating_avg               Decimal                    @default(0) @db.Decimal(3, 2)
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  approval_status          vendor_status              @default(pending)
+  user                     users                      @relation("delivery_agents_user_id", fields: [user_id], references: [id], onDelete: Restrict)
+  delivery_agent_locations delivery_agent_locations[] @relation("delivery_agent_locations_delivery_agent_id")
+  return_requests          return_requests[]          @relation("return_requests_pickup_agent_id")
+  shipments                shipments[]                @relation("shipments_delivery_agent_id")
+  @@schema("shop")
+}
+
+model device_tokens {
+  id           BigInt          @id @default(autoincrement())
+  user_id      BigInt
+  platform     device_platform
+  token        String          @unique
+  app_version  String?         @db.VarChar(20)
+  is_active    Boolean         @default(true)
+  last_seen_at DateTime        @default(now()) @db.Timestamptz(6)
+  created_at   DateTime        @default(now()) @db.Timestamptz(6)
+  user         users           @relation("device_tokens_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model inventory_movements {
+  id             BigInt           @id @default(autoincrement())
+  variant_id     BigInt
+  change_qty     Int
+  reason         String           @db.VarChar(30)
+  reference_type String?          @db.VarChar(30)
+  reference_id   BigInt?
+  created_by     BigInt?
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  created_by_ref users?           @relation("inventory_movements_created_by", fields: [created_by], references: [id])
+  variant        product_variants @relation("inventory_movements_variant_id", fields: [variant_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model notification_preferences {
+  user_id BigInt
+  type    notification_type
+  channel notification_channel
+  enabled Boolean              @default(true)
+  user    users                @relation("notification_preferences_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, type, channel])
+  @@schema("shop")
+}
+
+model notification_templates {
+  id             BigInt               @id @default(autoincrement())
+  code           String               @db.VarChar(60)
+  channel        notification_channel
+  type           notification_type
+  title_template String               @db.VarChar(200)
+  body_template  String
+  is_active      Boolean              @default(true)
+  @@unique([code, channel], map: "notification_templates_code_channel_key")
+  @@schema("shop")
+}
+
+model notifications {
+  id              BigInt               @id @default(autoincrement())
+  user_id         BigInt
+  type            notification_type
+  channel         notification_channel @default(in_app)
+  title           String               @db.VarChar(200)
+  body            String
+  image_url       String?
+  deep_link       String?
+  data            Json                 @default("{}")
+  is_read         Boolean              @default(false)
+  read_at         DateTime?            @db.Timestamptz(6)
+  sent_at         DateTime?            @db.Timestamptz(6)
+  delivery_status String               @default("queued") @db.VarChar(20)
+  failure_reason  String?
+  created_at      DateTime             @default(now()) @db.Timestamptz(6)
+  user            users                @relation("notifications_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model order_items {
+  id              BigInt            @id @default(autoincrement())
+  order_id        BigInt
+  vendor_id       BigInt
+  variant_id      BigInt
+  product_name    String            @db.VarChar(200)
+  sku             String            @db.VarChar(64)
+  color_name      String            @db.VarChar(50)
+  size_code       String            @db.VarChar(20)
+  image_url       String?
+  unit_price      Decimal           @db.Decimal(10, 2)
+  unit_mrp        Decimal           @db.Decimal(10, 2)
+  quantity        Int
+  discount_amount Decimal           @default(0) @db.Decimal(10, 2)
+  tax_amount      Decimal           @default(0) @db.Decimal(10, 2)
+  line_total      Decimal           @db.Decimal(12, 2)
+  status          order_item_status @default(pending)
+  created_at      DateTime          @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime          @default(now()) @db.Timestamptz(6)
+  order           orders            @relation("order_items_order_id", fields: [order_id], references: [id], onDelete: Cascade)
+  variant         product_variants  @relation("order_items_variant_id", fields: [variant_id], references: [id])
+  vendor          vendors           @relation("order_items_vendor_id", fields: [vendor_id], references: [id])
+  product_reviews product_reviews[] @relation("product_reviews_order_item_id")
+  refunds         refunds[]         @relation("refunds_order_item_id")
+  return_requests return_requests[] @relation("return_requests_order_item_id")
+  shipment_items  shipment_items[]  @relation("shipment_items_order_item_id")
+  @@schema("shop")
+}
+
+model order_status_history {
+  id             BigInt        @id @default(autoincrement())
+  order_id       BigInt
+  from_status    order_status?
+  to_status      order_status
+  changed_by     BigInt?
+  note           String?
+  created_at     DateTime      @default(now()) @db.Timestamptz(6)
+  changed_by_ref users?        @relation("order_status_history_changed_by", fields: [changed_by], references: [id])
+  order          orders        @relation("order_status_history_order_id", fields: [order_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model orders {
+  id                   BigInt                 @id @default(autoincrement())
+  order_number         String                 @unique @db.VarChar(30)
+  user_id              BigInt
+  shipping_address     Json
+  billing_address      Json?
+  coupon_id            BigInt?
+  subtotal             Decimal                @db.Decimal(12, 2)
+  discount_amount      Decimal                @default(0) @db.Decimal(12, 2)
+  shipping_fee         Decimal                @default(0) @db.Decimal(10, 2)
+  tax_amount           Decimal                @default(0) @db.Decimal(12, 2)
+  total_amount         Decimal                @db.Decimal(12, 2)
+  currency             String                 @default("INR") @db.Char(3)
+  status               order_status           @default(pending)
+  payment_method       payment_method
+  notes                String?
+  placed_at            DateTime               @default(now()) @db.Timestamptz(6)
+  cancelled_at         DateTime?              @db.Timestamptz(6)
+  cancel_reason        String?
+  updated_at           DateTime               @default(now()) @db.Timestamptz(6)
+  coupon               coupons?               @relation("orders_coupon_id", fields: [coupon_id], references: [id])
+  user                 users                  @relation("orders_user_id", fields: [user_id], references: [id])
+  order_items          order_items[]          @relation("order_items_order_id")
+  order_status_history order_status_history[] @relation("order_status_history_order_id")
+  payments             payments[]             @relation("payments_order_id")
+  shipments            shipments[]            @relation("shipments_order_id")
+  @@schema("shop")
+}
+
+model payments {
+  id                 BigInt         @id @default(autoincrement())
+  order_id           BigInt
+  method             payment_method
+  gateway            String?        @db.VarChar(30)
+  gateway_order_id   String?        @db.VarChar(100)
+  gateway_payment_id String?        @unique @db.VarChar(100)
+  amount             Decimal        @db.Decimal(12, 2)
+  currency           String         @default("INR") @db.Char(3)
+  status             payment_status @default(initiated)
+  failure_reason     String?
+  raw_response       Json?
+  paid_at            DateTime?      @db.Timestamptz(6)
+  created_at         DateTime       @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime       @default(now()) @db.Timestamptz(6)
+  order              orders         @relation("payments_order_id", fields: [order_id], references: [id])
+  refunds            refunds[]      @relation("refunds_payment_id")
+  @@schema("shop")
+}
+
+model product_images {
+  id            BigInt   @id @default(autoincrement())
+  product_id    BigInt
+  color_id      Int?     @db.SmallInt
+  url           String
+  thumbnail_url String?
+  alt_text      String?  @db.VarChar(200)
+  sort_order    Int      @default(0)
+  is_primary    Boolean  @default(false)
+  created_at    DateTime @default(now()) @db.Timestamptz(6)
+  color         colors?  @relation("product_images_color_id", fields: [color_id], references: [id])
+  product       products @relation("product_images_product_id", fields: [product_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model product_reviews {
+  id            BigInt       @id @default(autoincrement())
+  product_id    BigInt
+  user_id       BigInt
+  order_item_id BigInt?
+  rating        Int          @db.SmallInt
+  title         String?      @db.VarChar(150)
+  body          String?
+  size_fit      String?      @db.VarChar(20)
+  image_urls    String[]     @default([])
+  is_approved   Boolean      @default(true)
+  created_at    DateTime     @default(now()) @db.Timestamptz(6)
+  order_item    order_items? @relation("product_reviews_order_item_id", fields: [order_item_id], references: [id])
+  product       products     @relation("product_reviews_product_id", fields: [product_id], references: [id], onDelete: Cascade)
+  user          users        @relation("product_reviews_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+  @@unique([product_id, user_id], map: "product_reviews_product_id_user_id_key")
+  @@schema("shop")
+}
+
+model product_variants {
+  id                  BigInt                @id @default(autoincrement())
+  product_id          BigInt
+  color_id            Int                   @db.SmallInt
+  size_id             Int                   @db.SmallInt
+  sku                 String                @unique @db.VarChar(64)
+  barcode             String?               @db.VarChar(64)
+  price               Decimal               @db.Decimal(10, 2)
+  mrp                 Decimal               @db.Decimal(10, 2)
+  stock_qty           Int                   @default(0)
+  reserved_qty        Int                   @default(0)
+  low_stock_threshold Int                   @default(5)
+  weight_grams        Int?
+  is_active           Boolean               @default(true)
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime              @default(now()) @db.Timestamptz(6)
+  color               colors                @relation("product_variants_color_id", fields: [color_id], references: [id])
+  product             products              @relation("product_variants_product_id", fields: [product_id], references: [id], onDelete: Cascade)
+  size                sizes                 @relation("product_variants_size_id", fields: [size_id], references: [id])
+  cart_items          cart_items[]          @relation("cart_items_variant_id")
+  inventory_movements inventory_movements[] @relation("inventory_movements_variant_id")
+  order_items         order_items[]         @relation("order_items_variant_id")
+  return_requests     return_requests[]     @relation("return_requests_exchange_variant_id")
+  @@unique([product_id, color_id, size_id], map: "product_variants_product_id_color_id_size_id_key")
+  @@schema("shop")
+}
+
+model products {
+  id                BigInt                   @id @default(autoincrement())
+  vendor_id         BigInt
+  category_id       BigInt
+  brand_id          BigInt?
+  department        department
+  name              String                   @db.VarChar(200)
+  slug              String                   @unique @db.VarChar(220)
+  short_description String?                  @db.VarChar(500)
+  description       String?
+  material          String?                  @db.VarChar(100)
+  fit               String?                  @db.VarChar(50)
+  pattern           String?                  @db.VarChar(50)
+  sleeve            String?                  @db.VarChar(50)
+  occasion          String?                  @db.VarChar(50)
+  care_instructions String?
+  size_group        size_group
+  size_chart_url    String?
+  attributes        Json                     @default("{}")
+  base_price        Decimal                  @db.Decimal(10, 2)
+  mrp               Decimal                  @db.Decimal(10, 2)
+  tax_pct           Decimal                  @default(5.00) @db.Decimal(5, 2)
+  hsn_code          String?                  @db.VarChar(10)
+  status            product_status           @default(draft)
+  is_featured       Boolean                  @default(false)
+  rating_avg        Decimal                  @default(0) @db.Decimal(3, 2)
+  rating_count      Int                      @default(0)
+  approved_by       BigInt?
+  approved_at       DateTime?                @db.Timestamptz(6)
+  rejection_reason  String?
+  search_vector     Unsupported("tsvector")?
+  created_at        DateTime                 @default(now()) @db.Timestamptz(6)
+  updated_at        DateTime                 @default(now()) @db.Timestamptz(6)
+  approved_by_ref   users?                   @relation("products_approved_by", fields: [approved_by], references: [id])
+  brand             brands?                  @relation("products_brand_id", fields: [brand_id], references: [id])
+  category          categories               @relation("products_category_id", fields: [category_id], references: [id])
+  vendor            vendors                  @relation("products_vendor_id", fields: [vendor_id], references: [id], onDelete: Restrict)
+  product_images    product_images[]         @relation("product_images_product_id")
+  product_reviews   product_reviews[]        @relation("product_reviews_product_id")
+  product_variants  product_variants[]       @relation("product_variants_product_id")
+  wishlist_items    wishlist_items[]         @relation("wishlist_items_product_id")
+  @@schema("shop")
+}
+
+model refunds {
+  id                BigInt       @id @default(autoincrement())
+  payment_id        BigInt
+  order_item_id     BigInt?
+  amount            Decimal      @db.Decimal(12, 2)
+  reason            String?
+  status            String       @default("pending") @db.VarChar(20)
+  gateway_refund_id String?      @db.VarChar(100)
+  processed_at      DateTime?    @db.Timestamptz(6)
+  created_at        DateTime     @default(now()) @db.Timestamptz(6)
+  order_item        order_items? @relation("refunds_order_item_id", fields: [order_item_id], references: [id])
+  payment           payments     @relation("refunds_payment_id", fields: [payment_id], references: [id])
+  @@schema("shop")
+}
+
+model return_requests {
+  id                  BigInt            @id @default(autoincrement())
+  order_item_id       BigInt
+  user_id             BigInt
+  type                String            @db.VarChar(10)
+  reason              String            @db.VarChar(50)
+  comments            String?
+  exchange_variant_id BigInt?
+  image_urls          String[]          @default([])
+  status              String            @default("requested") @db.VarChar(20)
+  reverse_shipment_id BigInt?
+  created_at          DateTime          @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime          @default(now()) @db.Timestamptz(6)
+  pickup_agent_id     BigInt?
+  refund_amount       Decimal?          @db.Decimal(12, 2)
+  picked_up_at        DateTime?         @db.Timestamptz(6)
+  exchange_variant    product_variants? @relation("return_requests_exchange_variant_id", fields: [exchange_variant_id], references: [id])
+  order_item          order_items       @relation("return_requests_order_item_id", fields: [order_item_id], references: [id])
+  pickup_agent        delivery_agents?  @relation("return_requests_pickup_agent_id", fields: [pickup_agent_id], references: [id])
+  reverse_shipment    shipments?        @relation("return_requests_reverse_shipment_id", fields: [reverse_shipment_id], references: [id])
+  user                users             @relation("return_requests_user_id", fields: [user_id], references: [id])
+  @@schema("shop")
+}
+
+model shipment_items {
+  shipment_id   BigInt
+  order_item_id BigInt
+  quantity      Int
+  order_item    order_items @relation("shipment_items_order_item_id", fields: [order_item_id], references: [id])
+  shipment      shipments   @relation("shipment_items_shipment_id", fields: [shipment_id], references: [id], onDelete: Cascade)
+
+  @@id([shipment_id, order_item_id])
+  @@schema("shop")
+}
+
+model shipment_tracking_events {
+  id             BigInt          @id @default(autoincrement())
+  shipment_id    BigInt
+  status         shipment_status
+  location_name  String?         @db.VarChar(150)
+  latitude       Decimal?        @db.Decimal(9, 6)
+  longitude      Decimal?        @db.Decimal(9, 6)
+  description    String?
+  updated_by     BigInt?
+  occurred_at    DateTime        @default(now()) @db.Timestamptz(6)
+  shipment       shipments       @relation("shipment_tracking_events_shipment_id", fields: [shipment_id], references: [id], onDelete: Cascade)
+  updated_by_ref users?          @relation("shipment_tracking_events_updated_by", fields: [updated_by], references: [id])
+  @@schema("shop")
+}
+
+model shipments {
+  id                       BigInt                     @id @default(autoincrement())
+  order_id                 BigInt
+  vendor_id                BigInt
+  delivery_agent_id        BigInt?
+  tracking_number          String                     @unique @db.VarChar(50)
+  carrier                  String                     @default("in_house") @db.VarChar(50)
+  status                   shipment_status            @default(created)
+  pickup_address           Json
+  delivery_address         Json
+  weight_grams             Int?
+  delivery_otp             String?                    @db.VarChar(6)
+  cod_amount               Decimal                    @default(0) @db.Decimal(12, 2)
+  attempt_count            Int                        @default(0) @db.SmallInt
+  estimated_delivery       DateTime?                  @db.Date
+  assigned_at              DateTime?                  @db.Timestamptz(6)
+  picked_up_at             DateTime?                  @db.Timestamptz(6)
+  delivered_at             DateTime?                  @db.Timestamptz(6)
+  proof_of_delivery_url    String?
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  packed_at                DateTime?                  @db.Timestamptz(6)
+  delivery_agent           delivery_agents?           @relation("shipments_delivery_agent_id", fields: [delivery_agent_id], references: [id])
+  order                    orders                     @relation("shipments_order_id", fields: [order_id], references: [id], onDelete: Cascade)
+  vendor                   vendors                    @relation("shipments_vendor_id", fields: [vendor_id], references: [id])
+  delivery_agent_locations delivery_agent_locations[] @relation("delivery_agent_locations_shipment_id")
+  return_requests          return_requests[]          @relation("return_requests_reverse_shipment_id")
+  shipment_items           shipment_items[]           @relation("shipment_items_shipment_id")
+  shipment_tracking_events shipment_tracking_events[] @relation("shipment_tracking_events_shipment_id")
+  @@schema("shop")
+}
+
+model sizes {
+  id               Int                @id @default(autoincrement()) @db.SmallInt
+  size_group       size_group
+  code             String             @db.VarChar(20)
+  label            String             @db.VarChar(50)
+  sort_order       Int                @default(0)
+  product_variants product_variants[] @relation("product_variants_size_id")
+  @@unique([size_group, code], map: "sizes_size_group_code_key")
+  @@schema("shop")
+}
+
+model users {
+  id                       BigInt                     @id @default(autoincrement())
+  role                     user_role                  @default(customer)
+  full_name                String                     @db.VarChar(120)
+  email                    String?                    @unique @db.Citext
+  phone                    String?                    @unique @db.VarChar(20)
+  password_hash            String
+  avatar_url               String?
+  status                   account_status             @default(active)
+  email_verified           Boolean                    @default(false)
+  phone_verified           Boolean                    @default(false)
+  last_login_at            DateTime?                  @db.Timestamptz(6)
+  created_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  updated_at               DateTime                   @default(now()) @db.Timestamptz(6)
+  addresses                addresses[]                @relation("addresses_user_id")
+  admin_audit_log          admin_audit_log[]          @relation("admin_audit_log_admin_id")
+  admin_profile            admin_profiles?            @relation("admin_profiles_user_id")
+  cart                     carts?                     @relation("carts_user_id")
+  coupons                  coupons[]                  @relation("coupons_created_by")
+  delivery_agent           delivery_agents?           @relation("delivery_agents_user_id")
+  device_tokens            device_tokens[]            @relation("device_tokens_user_id")
+  inventory_movements      inventory_movements[]      @relation("inventory_movements_created_by")
+  notification_preferences notification_preferences[] @relation("notification_preferences_user_id")
+  notifications            notifications[]            @relation("notifications_user_id")
+  order_status_history     order_status_history[]     @relation("order_status_history_changed_by")
+  orders                   orders[]                   @relation("orders_user_id")
+  product_reviews          product_reviews[]          @relation("product_reviews_user_id")
+  products                 products[]                 @relation("products_approved_by")
+  return_requests          return_requests[]          @relation("return_requests_user_id")
+  shipment_tracking_events shipment_tracking_events[] @relation("shipment_tracking_events_updated_by")
+  vendors_by_approved_by   vendors[]                  @relation("vendors_approved_by")
+  vendor                   vendors?                   @relation("vendors_user_id")
+  wishlist_items           wishlist_items[]           @relation("wishlist_items_user_id")
+  @@schema("shop")
+}
+
+model vendor_bank_accounts {
+  id                 BigInt   @id @default(autoincrement())
+  vendor_id          BigInt
+  account_holder     String   @db.VarChar(150)
+  account_number_enc String
+  ifsc               String   @db.VarChar(11)
+  bank_name          String?  @db.VarChar(100)
+  is_primary         Boolean  @default(true)
+  created_at         DateTime @default(now()) @db.Timestamptz(6)
+  vendor             vendors  @relation("vendor_bank_accounts_vendor_id", fields: [vendor_id], references: [id], onDelete: Cascade)
+  @@schema("shop")
+}
+
+model vendor_payouts {
+  id           BigInt    @id @default(autoincrement())
+  vendor_id    BigInt
+  period_start DateTime  @db.Date
+  period_end   DateTime  @db.Date
+  gross_amount Decimal   @db.Decimal(12, 2)
+  commission   Decimal   @db.Decimal(12, 2)
+  net_amount   Decimal   @db.Decimal(12, 2)
+  status       String    @default("pending") @db.VarChar(20)
+  reference_no String?   @db.VarChar(100)
+  paid_at      DateTime? @db.Timestamptz(6)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+  vendor       vendors   @relation("vendor_payouts_vendor_id", fields: [vendor_id], references: [id])
+  @@schema("shop")
+}
+
+model vendors {
+  id                   BigInt                 @id @default(autoincrement())
+  user_id              BigInt                 @unique
+  business_name        String                 @db.VarChar(150)
+  display_name         String                 @db.VarChar(150)
+  slug                 String                 @unique @db.VarChar(160)
+  gstin                String?                @unique @db.VarChar(15)
+  pan                  String?                @db.VarChar(10)
+  support_email        String?                @db.Citext
+  support_phone        String?                @db.VarChar(20)
+  logo_url             String?
+  pickup_address_id    BigInt?
+  commission_pct       Decimal                @default(10.00) @db.Decimal(5, 2)
+  rating_avg           Decimal                @default(0) @db.Decimal(3, 2)
+  status               vendor_status          @default(pending)
+  approved_by          BigInt?
+  approved_at          DateTime?              @db.Timestamptz(6)
+  rejection_reason     String?
+  created_at           DateTime               @default(now()) @db.Timestamptz(6)
+  updated_at           DateTime               @default(now()) @db.Timestamptz(6)
+  approved_by_ref      users?                 @relation("vendors_approved_by", fields: [approved_by], references: [id])
+  pickup_address       addresses?             @relation("vendors_pickup_address_id", fields: [pickup_address_id], references: [id])
+  user                 users                  @relation("vendors_user_id", fields: [user_id], references: [id], onDelete: Restrict)
+  coupons              coupons[]              @relation("coupons_vendor_id")
+  order_items          order_items[]          @relation("order_items_vendor_id")
+  products             products[]             @relation("products_vendor_id")
+  shipments            shipments[]            @relation("shipments_vendor_id")
+  vendor_bank_accounts vendor_bank_accounts[] @relation("vendor_bank_accounts_vendor_id")
+  vendor_payouts       vendor_payouts[]       @relation("vendor_payouts_vendor_id")
+  @@schema("shop")
+}
+
+model wishlist_items {
+  user_id    BigInt
+  product_id BigInt
+  added_at   DateTime @default(now()) @db.Timestamptz(6)
+  product    products @relation("wishlist_items_product_id", fields: [product_id], references: [id], onDelete: Cascade)
+  user       users    @relation("wishlist_items_user_id", fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, product_id])
+  @@schema("shop")
+}
+
+enum account_status {
+  active
+  suspended
+  deleted
+
+  @@schema("shop")
+}
+
+enum address_type {
+  home
+  work
+  other
+  warehouse
+
+  @@schema("shop")
+}
+
+enum department {
+  men
+  women
+  kids
+  unisex
+
+  @@schema("shop")
+}
+
+enum device_platform {
+  android
+  ios
+  web
+
+  @@schema("shop")
+}
+
+enum discount_type {
+  percentage
+  flat
+
+  @@schema("shop")
+}
+
+enum notification_channel {
+  in_app
+  push
+  email
+  sms
+
+  @@schema("shop")
+}
+
+enum notification_type {
+  order
+  payment
+  shipment
+  promotion
+  account
+  vendor
+  review
+  system
+
+  @@schema("shop")
+}
+
+enum order_item_status {
+  pending
+  confirmed
+  packed
+  shipped
+  delivered
+  cancelled
+  return_requested
+  returned
+  refunded
+
+  @@schema("shop")
+}
+
+enum order_status {
+  pending
+  confirmed
+  processing
+  partially_shipped
+  shipped
+  delivered
+  cancelled
+  returned
+  refunded
+
+  @@schema("shop")
+}
+
+enum payment_method {
+  cod
+  upi
+  card
+  netbanking
+  wallet
+
+  @@schema("shop")
+}
+
+enum payment_status {
+  initiated
+  success
+  failed
+  refunded
+  partially_refunded
+
+  @@schema("shop")
+}
+
+enum product_status {
+  draft
+  pending_approval
+  active
+  inactive
+  rejected
+
+  @@schema("shop")
+}
+
+enum shipment_status {
+  created
+  assigned
+  picked_up
+  in_transit
+  out_for_delivery
+  delivered
+  failed_attempt
+  returned_to_vendor
+  cancelled
+
+  @@schema("shop")
+}
+
+enum size_group {
+  adult_alpha
+  adult_numeric
+  kids_age
+  footwear
+  free_size
+
+  @@schema("shop")
+}
+
+enum user_role {
+  customer
+  vendor
+  admin
+  delivery_agent
+
+  @@schema("shop")
+}
+
+enum vendor_status {
+  pending
+  approved
+  rejected
+  suspended
+
+  @@schema("shop")
+}

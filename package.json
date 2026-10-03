@@ -1,0 +1,20 @@
+{
+  "name": "ink-and-cotton",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run start:dev -w apps/api",
+    "dev:shop": "npm run dev -w apps/shop",
+    "dev:sell": "npm run dev -w apps/sell",
+    "dev:deliver": "npm run dev -w apps/deliver",
+    "dev:admin": "npm run dev -w apps/admin",
+    "db:seed": "npm run seed -w apps/api",
+    "build": "npm run build -w apps/api && npm run build -w apps/shop -w apps/sell -w apps/deliver -w apps/admin"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

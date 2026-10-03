@@ -1,0 +1,894 @@
+{
+  "products": {
+    "Essential Crew Neck T-Shirt": [
+      {
+        "id": "photo-1571455786673-9d9d6c194f90",
+        "alt": "man wearing black crew-neck t-shirt",
+        "color": "Black",
+        "credit": "Luis Quintero",
+        "verified": true
+      },
+      {
+        "id": "photo-1521572163474-6864f9cf17ab",
+        "alt": "man wearing white crew-neck t-shirt",
+        "color": "White",
+        "credit": "Anomaly",
+        "verified": true
+      }
+    ],
+    "Oversized Drop-Shoulder Tee": [
+      {
+        "id": "photo-1627225924765-552d49cf47ad",
+        "alt": "man in white crew neck t-shirt",
+        "color": "White",
+        "credit": "Bao Bao",
+        "verified": true
+      },
+      {
+        "id": "photo-1502389614483-e475fc34407e",
+        "alt": "man wearing black crew-neck t-shirt near white wall",
+        "color": "Black",
+        "credit": "ian dooley",
+        "verified": true
+      }
+    ],
+    "Pique Polo T-Shirt": [
+      {
+        "id": "photo-1609655106619-9d28f4f79c49",
+        "alt": "man in blue polo shirt",
+        "color": "Navy Blue",
+        "credit": "Manny Moreno",
+        "verified": true
+      },
+      {
+        "id": "photo-1625910513399-c9fcba54338c",
+        "alt": "man in black polo shirt",
+        "color": "Black",
+        "credit": "Clément Vatte",
+        "verified": true
+      }
+    ],
+    "Pocket Henley Tee": [
+      {
+        "id": "photo-1516177609387-9bad55a45194",
+        "alt": "man in gray shirt holding a log",
+        "color": "Grey",
+        "credit": "Frame Kings",
+        "verified": true
+      },
+      {
+        "id": "photo-1556293467-7acc070563ee",
+        "alt": "man near wall in casual tee",
+        "color": "Grey",
+        "credit": "Tj Sedisa",
+        "verified": true
+      }
+    ],
+    "Performance Dry-Fit Tee": [
+      {
+        "id": "photo-1587249247014-079373c40427",
+        "alt": "man in gray crew neck t-shirt running on road",
+        "color": "Grey",
+        "credit": "Woody Kelly",
+        "verified": true
+      },
+      {
+        "id": "photo-1516178151140-1a27a08c417a",
+        "alt": "man working out on lat pulldown machine",
+        "color": "Black",
+        "credit": "Frame Kings",
+        "verified": true
+      }
+    ],
+    "Oxford Button-Down Shirt": [
+      {
+        "id": "photo-1596502059330-be10388e3ba0",
+        "alt": "man in white dress shirt",
+        "color": "White",
+        "credit": "Andres Hernandez",
+        "verified": true
+      },
+      {
+        "id": "photo-1612541122840-bf7071c968a2",
+        "alt": "man in white dress shirt and blue jeans",
+        "color": "White",
+        "credit": "Jeremy McGilvrey",
+        "verified": true
+      }
+    ],
+    "Linen Resort Shirt": [
+      {
+        "id": "photo-1591357037205-166318b51afd",
+        "alt": "man in white button-up shirt outdoors",
+        "color": "White",
+        "credit": "Oriol Hausmann",
+        "verified": true
+      },
+      {
+        "id": "photo-1627686011747-74adda3d2343",
+        "alt": "man in white dress shirt near green plants",
+        "color": "White",
+        "credit": "Ricardo Morales",
+        "verified": true
+      }
+    ],
+    "Indigo Chambray Shirt": [
+      {
+        "id": "photo-1556513316-53848fb26850",
+        "alt": "man wearing blue denim dress shirt and blue turban",
+        "color": "Navy Blue",
+        "credit": "Dollar Gill",
+        "verified": true
+      },
+      {
+        "id": "photo-1582119048126-272a7b378e69",
+        "alt": "man in blue shirt and blue jeans on a rooftop",
+        "color": "Sky Blue",
+        "credit": "Jonathan Kemper",
+        "verified": true
+      }
+    ],
+    "Flannel Check Overshirt": [
+      {
+        "id": "photo-1613332658633-551aef234b70",
+        "alt": "man in black and red plaid shirt with cap",
+        "color": "Red",
+        "credit": "Christopher Ott",
+        "verified": true
+      },
+      {
+        "id": "photo-1601935033900-059813f9abfc",
+        "alt": "man in brown and white plaid button-up shirt",
+        "color": "Brown",
+        "credit": "Brooke Cagle",
+        "verified": true
+      }
+    ],
+    "Classic Denim Trucker Jacket": [
+      {
+        "id": "photo-1527016021513-b09758b777bd",
+        "alt": "man wearing blue denim jacket",
+        "color": "Navy Blue",
+        "credit": "James Balensiefen",
+        "verified": true
+      },
+      {
+        "id": "photo-1614699745279-2c61bd9d46b5",
+        "alt": "man in blue denim jacket and black cap",
+        "color": "Navy Blue",
+        "credit": "Brock Wegner",
+        "verified": true
+      }
+    ],
+    "Quilted Bomber Jacket": [
+      {
+        "id": "photo-1549399239-fb3c102d3d71",
+        "alt": "man wearing green bomber jacket, hands in pockets",
+        "color": "Olive",
+        "credit": "wessim mechergui",
+        "verified": true
+      },
+      {
+        "id": "photo-1629353689974-af4d5c70440f",
+        "alt": "man in green jacket near white wall",
+        "color": "Olive",
+        "credit": "iam_os",
+        "verified": true
+      }
+    ],
+    "Fleece Pullover Hoodie": [
+      {
+        "id": "photo-1632073143817-8cd5b2165e20",
+        "alt": "man in a gray hoodie in front of a wall",
+        "color": "Grey",
+        "credit": "adriaan venner scheepers",
+        "verified": true
+      },
+      {
+        "id": "photo-1573156555591-189ac70df8fb",
+        "alt": "man wearing black hoodie",
+        "color": "Black",
+        "credit": "Imad92 Asad",
+        "verified": true
+      }
+    ],
+    "Slim Tapered Stretch Jeans": [
+      {
+        "id": "photo-1555689502-c4b22d76c56f",
+        "alt": "man standing in blue denim jeans",
+        "color": "Navy Blue",
+        "credit": "Ivan Bogdanov",
+        "verified": true
+      },
+      {
+        "id": "photo-1767899390509-892ad3978dfa",
+        "alt": "man in jeans leaning on car hood",
+        "color": "Navy Blue",
+        "credit": "Christian Agbede",
+        "verified": true
+      }
+    ],
+    "Straight Fit Selvedge Jeans": [
+      {
+        "id": "photo-1552252059-9d77e4059ad1",
+        "alt": "man in white dress shirt and distressed blue jeans",
+        "color": "Navy Blue",
+        "credit": "Fares Hamouche",
+        "verified": true
+      },
+      {
+        "id": "photo-1557771883-459cd35e3fb1",
+        "alt": "man in grey shirt and jeans lifting his foot",
+        "color": "Navy Blue",
+        "credit": "Tânia Mousinho",
+        "verified": true
+      }
+    ],
+    "Everyday Stretch Chinos": [
+      {
+        "id": "photo-1584865288642-42078afe6942",
+        "alt": "man in white t-shirt and black trousers, studio floor",
+        "color": "Black",
+        "credit": "Santhosh Vaithiyanathan",
+        "verified": true
+      },
+      {
+        "id": "photo-1584864783592-f1d6d4fcd1d0",
+        "alt": "man in white t-shirt and black trousers, studio",
+        "color": "Black",
+        "credit": "Santhosh Vaithiyanathan",
+        "verified": true
+      }
+    ],
+    "Drawstring Cotton Shorts": [
+      {
+        "id": "photo-1621496503717-095a410e1566",
+        "alt": "man in white t-shirt and green shorts on beach",
+        "color": "Olive",
+        "credit": "Brandon Atchison",
+        "verified": true
+      },
+      {
+        "id": "photo-1697319452360-ee47502e39f6",
+        "alt": "man walking down the street in shorts",
+        "color": "Grey",
+        "credit": "Mohamad Khosravi",
+        "verified": true
+      }
+    ],
+    "Mandarin Collar Cotton Kurta": [
+      {
+        "id": "photo-1781106785213-ee999c3edf50",
+        "alt": "man in a cream kurta among trees",
+        "color": "White",
+        "credit": "MOHAMMAD AL JANNAT RAKIN",
+        "verified": true
+      },
+      {
+        "id": "photo-1770359993283-a2c2f386584e",
+        "alt": "man in a blue kurta and pants smiling",
+        "color": "Navy Blue",
+        "credit": "Noor Alam",
+        "verified": true
+      }
+    ],
+    "Silk Blend Festive Kurta": [
+      {
+        "id": "photo-1785612824580-d6201a9ad982",
+        "alt": "man in cream traditional kurta outfit",
+        "color": "Beige",
+        "credit": "MOHAMMAD AL JANNAT RAKIN",
+        "verified": true
+      },
+      {
+        "id": "photo-1774267230662-575d1f4ec1bd",
+        "alt": "man in light purple kurta and embellished vest",
+        "color": "Maroon",
+        "credit": "Noor Alam",
+        "verified": true
+      }
+    ],
+    "Leather Low-Top Sneakers": [
+      {
+        "id": "photo-1612905468542-585ca599afbc",
+        "alt": "person wearing white low-top sneakers",
+        "color": "White",
+        "credit": "Bear Bear",
+        "verified": true
+      },
+      {
+        "id": "photo-1627361673902-c80df14aecdd",
+        "alt": "person in white pants and white sneakers",
+        "color": "White",
+        "credit": "Mnz",
+        "verified": true
+      }
+    ],
+    "Knit Running Shoes": [
+      {
+        "id": "photo-1597892657493-6847b9640bac",
+        "alt": "person running in gray running shoes",
+        "color": "Grey",
+        "credit": "Jakob Owens",
+        "verified": true
+      },
+      {
+        "id": "photo-1602190420103-683df5093e86",
+        "alt": "man in blue shorts and white running sneakers",
+        "color": "White",
+        "credit": "Rob Wilson",
+        "verified": true
+      }
+    ],
+    "Tiered Cotton Maxi Dress": [
+      {
+        "id": "photo-1676327478489-ae4f973d0bbe",
+        "alt": "woman in a yellow and blue floral dress",
+        "color": "Yellow",
+        "credit": "Joseph Kellner",
+        "verified": true
+      },
+      {
+        "id": "photo-1496747611176-843222e1e57c",
+        "alt": "woman in long dress walking on seaside with woven bag",
+        "color": "White",
+        "credit": "Tamara Bellis",
+        "verified": true
+      }
+    ],
+    "Wrap Midi Dress": [
+      {
+        "id": "photo-1759992878336-a5dd342ea245",
+        "alt": "woman in a floral wrap dress",
+        "color": "Maroon",
+        "credit": "Reistor",
+        "verified": true
+      },
+      {
+        "id": "photo-1704775983177-8ae543524081",
+        "alt": "woman in a dark dress against a red background",
+        "color": "Black",
+        "credit": "GLOBALDSIO IT SOLUTION",
+        "verified": true
+      }
+    ],
+    "Linen Shirt Dress": [
+      {
+        "id": "photo-1733043014211-8d699f6a82b1",
+        "alt": "woman walking down a street wearing a dress",
+        "color": "Beige",
+        "credit": "Filip Rankovic Grobgaard",
+        "verified": true
+      },
+      {
+        "id": "photo-1609357605129-26f69add5d6e",
+        "alt": "woman in green long-sleeve dress in a field",
+        "color": "Olive",
+        "credit": "Junior REIS",
+        "verified": true
+      }
+    ],
+    "Ribbed Bodycon Dress": [
+      {
+        "id": "photo-1743079701830-c4a45ddc11a1",
+        "alt": "woman posing in black dress near stone wall",
+        "color": "Black",
+        "credit": "Mohammad Amin",
+        "verified": true
+      },
+      {
+        "id": "photo-1606049925382-6badf6de768e",
+        "alt": "woman in black dress walking on sidewalk",
+        "color": "Black",
+        "credit": "Nadia Sitova",
+        "verified": true
+      }
+    ],
+    "Smocked Floral Sundress": [
+      {
+        "id": "photo-1762154057377-cc9d3dd6900c",
+        "alt": "woman in a floral sundress outdoors",
+        "color": "Pink",
+        "credit": "Sanskrutihomes",
+        "verified": true
+      },
+      {
+        "id": "photo-1768982597225-9dadb37f3db7",
+        "alt": "woman in a floral print dress by plants",
+        "color": "Pink",
+        "credit": "IMANA",
+        "verified": true
+      }
+    ],
+    "Relaxed Boyfriend Tee": [
+      {
+        "id": "photo-1610142991820-e02266a4a9f0",
+        "alt": "woman in white crew neck t-shirt and gray jeans",
+        "color": "White",
+        "credit": "Silas Sousa",
+        "verified": true
+      },
+      {
+        "id": "photo-1583744946564-b52ac1c389c8",
+        "alt": "woman in black crew neck t-shirt and blue jeans",
+        "color": "Black",
+        "credit": "Faith & Yarn",
+        "verified": true
+      }
+    ],
+    "Puff Sleeve Blouse": [
+      {
+        "id": "photo-1608234807905-4466023792f5",
+        "alt": "woman in white long-sleeve blouse",
+        "color": "White",
+        "credit": "Laura Chouette",
+        "verified": true
+      },
+      {
+        "id": "photo-1595828204607-0d09afb58a71",
+        "alt": "woman in white long-sleeve blouse",
+        "color": "White",
+        "credit": "Eugenia Pan'kiv",
+        "verified": true
+      }
+    ],
+    "Satin Camisole Top": [
+      {
+        "id": "photo-1526231671662-69e722798ee2",
+        "alt": "woman in black silk top and pants",
+        "color": "Black",
+        "credit": "Diego Rosa",
+        "verified": true
+      },
+      {
+        "id": "photo-1704775983658-2773a9c0cce2",
+        "alt": "woman in dark purple satin shirt and white pants",
+        "color": "Maroon",
+        "credit": "GLOBALDSIO IT SOLUTION",
+        "verified": true
+      }
+    ],
+    "Cropped Knit Cardigan": [
+      {
+        "id": "photo-1573495804664-b1c0849525af",
+        "alt": "woman in beige open cardigan",
+        "color": "Beige",
+        "credit": "Christina @ wocintechchat.com",
+        "verified": true
+      },
+      {
+        "id": "photo-1610288311735-39b7facbd095",
+        "alt": "woman in yellow knit cardigan",
+        "color": "Yellow",
+        "credit": "Nadin Mario",
+        "verified": true
+      }
+    ],
+    "Oversized Linen Shirt": [
+      {
+        "id": "photo-1618085219724-c59ba48e08cd",
+        "alt": "woman in white shirt and blue jeans smiling",
+        "color": "White",
+        "credit": "Junior REIS",
+        "verified": true
+      },
+      {
+        "id": "photo-1776633733518-d81137214dc9",
+        "alt": "woman in white shirt against gray wall",
+        "color": "White",
+        "credit": "Margo Evardson",
+        "verified": true
+      }
+    ],
+    "High-Rise Mom Jeans": [
+      {
+        "id": "photo-1475178626620-a4d074967452",
+        "alt": "woman wearing jeans and white top",
+        "color": "Sky Blue",
+        "credit": "Tamara Bellis",
+        "verified": true
+      },
+      {
+        "id": "photo-1533825828907-94649041aa67",
+        "alt": "woman in white crop top and blue jeans walking on grass",
+        "color": "Sky Blue",
+        "credit": "Yarden",
+        "verified": true
+      }
+    ],
+    "Wide Leg Denim": [
+      {
+        "id": "photo-1578693082747-50c396cacd81",
+        "alt": "woman wearing blue split-side denim pants",
+        "color": "Navy Blue",
+        "credit": "Velizar Ivanov",
+        "verified": true
+      },
+      {
+        "id": "photo-1608370946545-7d93571b5593",
+        "alt": "woman in black shirt and blue jeans on street",
+        "color": "Navy Blue",
+        "credit": "Khalid Boutchich",
+        "verified": true
+      }
+    ],
+    "Skinny Stretch Jeans": [
+      {
+        "id": "photo-1626879210826-c953d2dfa15f",
+        "alt": "woman in gray t-shirt and blue jeans on stairs",
+        "color": "Navy Blue",
+        "credit": "Marcel Strauß",
+        "verified": true
+      },
+      {
+        "id": "photo-1604994183234-a311cba28474",
+        "alt": "woman in white shirt and blue jeans",
+        "color": "Navy Blue",
+        "credit": "behrouz sasani",
+        "verified": true
+      }
+    ],
+    "Wide Leg Linen Trousers": [
+      {
+        "id": "photo-1767631338127-8cd80ee2f9df",
+        "alt": "woman in white shirt and black wide-leg pants",
+        "color": "Black",
+        "credit": "Ramo Roso",
+        "verified": true
+      },
+      {
+        "id": "photo-1687825515654-23620796760c",
+        "alt": "woman in white top and green wide-leg pants",
+        "color": "Olive",
+        "credit": "Laura Oliveira",
+        "verified": true
+      }
+    ],
+    "Block Print A-Line Kurta": [
+      {
+        "id": "photo-1632745994322-ac4f4bb36792",
+        "alt": "woman in a blue Indian dress sitting on grass",
+        "color": "Sky Blue",
+        "credit": "Amrit Bhandari",
+        "verified": true
+      },
+      {
+        "id": "photo-1741847639057-b51a25d42892",
+        "alt": "woman in a pink floral kurta and pants",
+        "color": "Pink",
+        "credit": "Shahenaz India",
+        "verified": true
+      }
+    ],
+    "Chikankari Straight Kurta": [
+      {
+        "id": "photo-1745313452052-0e4e341f326c",
+        "alt": "woman in a white floral kurta pajama",
+        "color": "White",
+        "credit": "Shahenaz India",
+        "verified": true
+      },
+      {
+        "id": "photo-1667665970124-2273c6ef3489",
+        "alt": "woman in a white kurta dress",
+        "color": "White",
+        "credit": "Sahil Shettigar",
+        "verified": true
+      }
+    ],
+    "Anarkali Flared Kurta": [
+      {
+        "id": "photo-1610047614256-023d7c028d0b",
+        "alt": "woman in red and gold floral Indian dress",
+        "color": "Maroon",
+        "credit": "Bulbul Ahmed",
+        "verified": true
+      },
+      {
+        "id": "photo-1610047614222-d33c39abfab2",
+        "alt": "woman in red and white floral Indian dress",
+        "color": "Maroon",
+        "credit": "Bulbul Ahmed",
+        "verified": true
+      }
+    ],
+    "Everyday Cotton Kurta": [
+      {
+        "id": "photo-1706943262117-b35de4ba50b4",
+        "alt": "woman in a green Indian dress",
+        "color": "Olive",
+        "credit": "siddharth vyas",
+        "verified": true
+      },
+      {
+        "id": "photo-1790601118775-41de130c5f95",
+        "alt": "woman in red embroidered tunic and black pants",
+        "color": "Maroon",
+        "credit": "Mr Catographer",
+        "verified": true
+      }
+    ],
+    "Handloom Cotton Saree": [
+      {
+        "id": "photo-1628477116196-48afe0d209e0",
+        "alt": "woman in red and brown sari",
+        "color": "Maroon",
+        "credit": "PRATEEK JAISWAL",
+        "verified": true
+      },
+      {
+        "id": "photo-1597897569252-9df44c7de0db",
+        "alt": "woman in yellow and red sari",
+        "color": "Yellow",
+        "credit": "Chandrakant Sontakke",
+        "verified": true
+      }
+    ],
+    "Banarasi Silk Saree": [
+      {
+        "id": "photo-1678705730064-a7ecbab4b3fb",
+        "alt": "woman in a white and red sari",
+        "color": "Maroon",
+        "credit": "Sabesh Photography LTD",
+        "verified": true
+      },
+      {
+        "id": "photo-1742287724816-4a8a1cc7ad5c",
+        "alt": "woman in a pink and black saree",
+        "color": "Pink",
+        "credit": "Himanshu Dewangan",
+        "verified": true
+      }
+    ],
+    "Canvas Platform Sneakers": [
+      {
+        "id": "photo-1599670998937-441a3a74b2f1",
+        "alt": "person wearing white low-top sneakers",
+        "color": "White",
+        "credit": "LOGAN WEAVER",
+        "verified": true
+      },
+      {
+        "id": "photo-1596565206601-eb1c83627d49",
+        "alt": "person in blue jeans and black-and-white sneakers on grass",
+        "color": "Black",
+        "credit": "Mariia Zakatiura",
+        "verified": true
+      }
+    ],
+    "Dino Print Kids Tee": [
+      {
+        "id": "photo-1624523276755-4f11827d2386",
+        "alt": "boy in white crew neck t-shirt",
+        "color": "White",
+        "credit": "Xia Yang",
+        "verified": true
+      },
+      {
+        "id": "photo-1608734265656-f035d3e7bcbf",
+        "alt": "boy in gray crew neck t-shirt",
+        "color": "Grey",
+        "credit": "Alexander Grey",
+        "verified": true
+      }
+    ],
+    "Boys Denim Shorts": [
+      {
+        "id": "photo-1586537182870-8a8f8b0a49b7",
+        "alt": "boy in striped polo shirt and blue denim shorts on grass",
+        "color": "Sky Blue",
+        "credit": "Vitaliy Zalishchyker",
+        "verified": true
+      },
+      {
+        "id": "photo-1627639679638-8485316a4b21",
+        "alt": "boy in striped shirt and blue denim shorts",
+        "color": "Sky Blue",
+        "credit": "Rameez Remy",
+        "verified": true
+      }
+    ],
+    "Boys Zip Hoodie": [
+      {
+        "id": "photo-1608764589882-975eecf78107",
+        "alt": "boy in yellow zip-up jacket smiling",
+        "color": "Yellow",
+        "credit": "Ashwini Chaudhary(Monty)",
+        "verified": true
+      },
+      {
+        "id": "photo-1629678353992-5275abd15cfc",
+        "alt": "boy in black hoodie sitting on orange chair",
+        "color": "Black",
+        "credit": "oskar holm",
+        "verified": true
+      }
+    ],
+    "Boys Festive Kurta": [
+      {
+        "id": "photo-1615868167768-6fe2e8eaacd8",
+        "alt": "boy in white button-up shirt smiling",
+        "color": "White",
+        "credit": "Shravan K Acharya",
+        "verified": true
+      },
+      {
+        "id": "photo-1544029430-2f9af98dbe69",
+        "alt": "boy in white dress shirt",
+        "color": "White",
+        "credit": "Khadija Yousaf",
+        "verified": true
+      }
+    ],
+    "Boys Polo T-Shirt": [
+      {
+        "id": "photo-1601785501631-50bdfa40263b",
+        "alt": "boy in blue polo shirt",
+        "color": "Navy Blue",
+        "credit": "Matt Howard",
+        "verified": true
+      },
+      {
+        "id": "photo-1577975882846-431adc8c2009",
+        "alt": "boy in blue and orange collared top",
+        "color": "Orange",
+        "credit": "Qasim Sadiq",
+        "verified": true
+      }
+    ],
+    "Girls Twirl Party Frock": [
+      {
+        "id": "photo-1739660223486-61e43b4105e9",
+        "alt": "little girl in a pink dress leaning against a red wall",
+        "color": "Pink",
+        "credit": "Dottie Di Liddo",
+        "verified": true
+      },
+      {
+        "id": "photo-1578897367107-2828e351c8a8",
+        "alt": "smiling girl holding her dress",
+        "color": "Pink",
+        "credit": "Kayan Baby",
+        "verified": true
+      }
+    ],
+    "Girls Cotton Day Dress": [
+      {
+        "id": "photo-1621163327889-581607524821",
+        "alt": "girl in blue and white floral dress",
+        "color": "Sky Blue",
+        "credit": "Mieke Campbell",
+        "verified": true
+      },
+      {
+        "id": "photo-1599624427857-461fd60c23e5",
+        "alt": "girl in white and teal sleeveless dress on grass",
+        "color": "White",
+        "credit": "Leire Cavia",
+        "verified": true
+      }
+    ],
+    "Girls Graphic Tee": [
+      {
+        "id": "photo-1582887122254-f271875d0594",
+        "alt": "girl in pink crew neck t-shirt",
+        "color": "Pink",
+        "credit": "Rajesh Rajput",
+        "verified": true
+      },
+      {
+        "id": "photo-1726153049464-f423dd75cdf9",
+        "alt": "little girl in a pink shirt posing",
+        "color": "Pink",
+        "credit": "Polina Kuzovkova",
+        "verified": true
+      }
+    ],
+    "Girls Ethnic Kurta Set": [
+      {
+        "id": "photo-1639563853019-779fb4e41844",
+        "alt": "young girl in red and gold traditional dress",
+        "color": "Pink",
+        "credit": "Srijal Maharjan",
+        "verified": true
+      },
+      {
+        "id": "photo-1594135356513-14291e55162a",
+        "alt": "girl in red long-sleeve dress sitting on floor",
+        "color": "Pink",
+        "credit": "Rajesh Rajput",
+        "verified": true
+      }
+    ],
+    "Girls Denim Jeans": [
+      {
+        "id": "photo-1600174471006-7fd4a8d3eb64",
+        "alt": "girl in pink shirt and blue denim jeans",
+        "color": "Sky Blue",
+        "credit": "Rajesh Rajput",
+        "verified": true
+      },
+      {
+        "id": "photo-1497881807663-38b9a95b7192",
+        "alt": "smiling girl in blue denim jacket",
+        "color": "Sky Blue",
+        "credit": "Janko Ferlič",
+        "verified": true
+      }
+    ],
+    "Organic Cotton Romper": [
+      {
+        "id": "photo-1544388405-6f0e0c3cdf54",
+        "alt": "toddler wearing white and red overall romper",
+        "color": "White",
+        "credit": "Barrett Ward",
+        "verified": true
+      },
+      {
+        "id": "photo-1607664752486-4754a2513d2d",
+        "alt": "baby in orange and white stripe onesie",
+        "color": "White",
+        "credit": "jackson kondili",
+        "verified": true
+      }
+    ],
+    "Snap Button Onesie Pack": [
+      {
+        "id": "photo-1617331140180-e8262094733a",
+        "alt": "smiling baby in grey buttoned romper on white rug",
+        "color": "Grey",
+        "credit": "Christian Bowen",
+        "verified": true
+      },
+      {
+        "id": "photo-1522771930-78848d9293e8",
+        "alt": "baby sitting on white textile",
+        "color": "Beige",
+        "credit": "Brytny.com",
+        "verified": true
+      }
+    ],
+    "Kids Velcro Sneakers": [
+      {
+        "id": "photo-1560967603-691f92bcb6ff",
+        "alt": "adult holding boy's hands while walking in sneakers",
+        "color": "Navy Blue",
+        "credit": "Ganda Lukman",
+        "verified": true
+      },
+      {
+        "id": "photo-1707013537977-90e0a6cfa484",
+        "alt": "close up of a child wearing pink shoes",
+        "color": "Pink",
+        "credit": "Thea Harrison",
+        "verified": true
+      }
+    ]
+  },
+  "heroes": {
+    "home": {
+      "id": "photo-1763328719057-ff6b03c816d0",
+      "alt": "three diverse young adults posing outdoors together",
+      "credit": "Christian Agbede",
+      "verified": true
+    },
+    "men": {
+      "id": "photo-1617114919297-3c8ddb01f599",
+      "alt": "man in a tan jacket and blue jeans leaning against a stone wall",
+      "credit": "Mohamad Khosravi",
+      "verified": true
+    },
+    "women": {
+      "id": "photo-1562151270-c7d22ceb586a",
+      "alt": "woman in yellow long-sleeved dress under white clouds",
+      "credit": "Hong Nguyen",
+      "verified": true
+    },
+    "kids": {
+      "id": "photo-1497486751825-1233686d5d80",
+      "alt": "five children smiling",
+      "credit": "LJ",
+      "verified": true
+    }
+  }
+}
